@@ -71,4 +71,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function adminlte_profile_url(){
         return ('user/profile');
     }
+
+    public function empresa(){
+        return $this->belongsTo(Empresa::class);
+    }
 }
