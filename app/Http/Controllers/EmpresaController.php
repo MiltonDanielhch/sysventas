@@ -98,7 +98,7 @@ class EmpresaController extends Controller
 
         Auth::login($usuario);
 
-        return redirect()->route('admin.index')->with('mensaje', 'se registro la empresa de la mamera correcta');
+        return redirect()->route('admin.index')->with('mensaje', 'se registro la empresa de la mamera correcta')->with('icono', 'success');
     }
 
     /**

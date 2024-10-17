@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,6 +21,15 @@ Route::get('/admin/configuracion', [EmpresaController::class, 'edit'])->name('ad
 Route::get('/admin/configuracion/pais/{id_pais}', [EmpresaController::class, 'buscar_estado'])->name('admin.empresa.buscar_estado');
 Route::get('/admin/configuracion/estado/{id_estado}', [EmpresaController::class, 'buscar_ciudad'])->name('admin.empresa.buscar_ciudad');
 Route::put('/admin/configuracion/{id}', [EmpresaController::class, 'update'])->name('admin.configuracion.update');
+
+//rutas para configuraciones
+Route::get('/admin/roles', [RoleController::class, 'index'])->name('admin.roles.index');
+Route::get('/admin/roles/create', [RoleController::class, 'create'])->name('admin.roles.create');
+Route::post('/admin/roles/create', [RoleController::class, 'store'])->name('admin.roles.store');
+Route::get('/admin/roles/{id}', [RoleController::class, 'show'])->name('admin.roles.show');
+Route::get('/admin/roles/{id}/edit', [RoleController::class, 'edit'])->name('admin.roles.edit');
+Route::put('/admin/roles/{id}', [RoleController::class, 'update'])->name('admin.roles.update');
+Route::delete('/admin/roles/{id}', [RoleController::class, 'destroy'])->name('admin.roles.destroy');
 
 
 Route::middleware([

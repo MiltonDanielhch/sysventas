@@ -335,6 +335,19 @@ return [
             'classes' => 'bg-success text-white',
         ],
         [
+            'text' => 'Roles',
+            'icon' => 'fas fa-fw fa-user-check',
+            'classes' => 'bg-success text-white',
+            'submenu' => [
+                [
+                    'text' => 'listado de roles',
+                    'url' => 'admin/roles',
+                    'classes' => 'bg-success text-white',
+
+                ],
+            ],
+        ],
+        [
             'text' => 'multilevel',
             'icon' => 'fas fa-fw fa-share',
             'submenu' => [
