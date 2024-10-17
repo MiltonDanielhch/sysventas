@@ -15,6 +15,13 @@ Route::get('/crear-empresa/pais/{id_pais}', [EmpresaController::class, 'buscar_e
 Route::get('/crear-empresa/estado/{id_estado}', [EmpresaController::class, 'buscar_ciudad'])->name('admin.empresa.buscar_ciudad');
 Route::post('/crear-empresa/create', [EmpresaController::class, 'store'])->name('admin.empresa.store');
 
+//rutas para configuraciones
+Route::get('/admin/configuracion', [EmpresaController::class, 'edit'])->name('admin.configuracion.edit');
+Route::get('/admin/configuracion/pais/{id_pais}', [EmpresaController::class, 'buscar_estado'])->name('admin.empresa.buscar_estado');
+Route::get('/admin/configuracion/estado/{id_estado}', [EmpresaController::class, 'buscar_ciudad'])->name('admin.empresa.buscar_ciudad');
+Route::put('/admin/configuracion/{id}', [EmpresaController::class, 'update'])->name('admin.configuracion.update');
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

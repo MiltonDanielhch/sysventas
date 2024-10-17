@@ -161,7 +161,7 @@
                                                 <label for="moneda">Moneda</label>
                                                <select name="moneda" id="" class="form-control">
                                                     @foreach ($monedas as $moneda)
-                                                        <option value="{{ $moneda->symbol }}">{{ $moneda->symbol }}</option>
+                                                        <option value="{{ $moneda->id }}">{{ $moneda->symbol }}</option>
                                                     @endforeach
                                                </select>
                                             </div>
@@ -250,9 +250,6 @@
                 </div>
             </div>
         </div>
-
-
-
 
     </div>
 @stop
