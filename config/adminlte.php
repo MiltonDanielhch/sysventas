@@ -348,6 +348,19 @@ return [
             ],
         ],
         [
+            'text' => 'Usuarios',
+            'icon' => 'fas fa-fw fa-users',
+            'classes' => 'bg-success text-white',
+            'submenu' => [
+                [
+                    'text' => 'listado de usuarios',
+                    'url' => 'admin/usuarios',
+                    'classes' => 'bg-success text-white',
+
+                ],
+            ],
+        ],
+        [
             'text' => 'multilevel',
             'icon' => 'fas fa-fw fa-share',
             'submenu' => [

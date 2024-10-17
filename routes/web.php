@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,7 +23,7 @@ Route::get('/admin/configuracion/pais/{id_pais}', [EmpresaController::class, 'bu
 Route::get('/admin/configuracion/estado/{id_estado}', [EmpresaController::class, 'buscar_ciudad'])->name('admin.empresa.buscar_ciudad');
 Route::put('/admin/configuracion/{id}', [EmpresaController::class, 'update'])->name('admin.configuracion.update');
 
-//rutas para configuraciones
+//rutas para roles
 Route::get('/admin/roles', [RoleController::class, 'index'])->name('admin.roles.index');
 Route::get('/admin/roles/create', [RoleController::class, 'create'])->name('admin.roles.create');
 Route::post('/admin/roles/create', [RoleController::class, 'store'])->name('admin.roles.store');
@@ -30,6 +31,15 @@ Route::get('/admin/roles/{id}', [RoleController::class, 'show'])->name('admin.ro
 Route::get('/admin/roles/{id}/edit', [RoleController::class, 'edit'])->name('admin.roles.edit');
 Route::put('/admin/roles/{id}', [RoleController::class, 'update'])->name('admin.roles.update');
 Route::delete('/admin/roles/{id}', [RoleController::class, 'destroy'])->name('admin.roles.destroy');
+
+//rutas para usuarios
+Route::get('/admin/usuarios', [UsuarioController::class, 'index'])->name('admin.usuarios.index');
+Route::get('/admin/usuarios/create', [UsuarioController::class, 'create'])->name('admin.usuarios.create');
+Route::post('/admin/usuarios/create', [UsuarioController::class, 'store'])->name('admin.usuarios.store');
+Route::get('/admin/usuarios/{id}', [UsuarioController::class, 'show'])->name('admin.usuarios.show');
+Route::get('/admin/usuarios/{id}/edit', [UsuarioController::class, 'edit'])->name('admin.usuarios.edit');
+Route::put('/admin/usuarios/{id}', [UsuarioController::class, 'update'])->name('admin.usuarios.update');
+Route::delete('/admin/usuarios/{id}', [UsuarioController::class, 'destroy'])->name('admin.usuarios.destroy');
 
 
 Route::middleware([
