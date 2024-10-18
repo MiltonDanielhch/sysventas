@@ -361,6 +361,19 @@ return [
             ],
         ],
         [
+            'text' => 'Categorias',
+            'icon' => 'fas fa-fw fa-tags',
+            'classes' => 'bg-success text-white',
+            'submenu' => [
+                [
+                    'text' => 'listado de categorias',
+                    'url' => 'admin/categorias',
+                    'classes' => 'bg-success text-white',
+
+                ],
+            ],
+        ],
+        [
             'text' => 'multilevel',
             'icon' => 'fas fa-fw fa-share',
             'submenu' => [

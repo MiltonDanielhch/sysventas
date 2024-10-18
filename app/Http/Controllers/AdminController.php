@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Empresa;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,9 +14,15 @@ class AdminController extends Controller
     public function index(){
         $total_roles = Role::count();
         $total_usuarios = User::count();
-        $empresa_id = Auth::user()->empresa_id;
+        $total_categorias = Categoria::count();
+        $empresa_id = Auth::check() ? Auth::user()->empresa_id : redirect()->route('login')->send();
         $empresa = Empresa::where('id', $empresa_id)->first();
-        return view('admin.index', compact('empresa', 'total_roles', 'total_usuarios'));
+        return view('admin.index', compact(
+            'empresa',
+            'total_roles',
+                     'total_usuarios',
+                    'total_categorias',
+        ));
     }
 
 }

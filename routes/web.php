@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsuarioController;
@@ -41,6 +42,14 @@ Route::get('/admin/usuarios/{id}/edit', [UsuarioController::class, 'edit'])->nam
 Route::put('/admin/usuarios/{id}', [UsuarioController::class, 'update'])->name('admin.usuarios.update');
 Route::delete('/admin/usuarios/{id}', [UsuarioController::class, 'destroy'])->name('admin.usuarios.destroy');
 
+//rutas para categorias
+Route::get('/admin/categorias', [CategoriaController::class, 'index'])->name('admin.categorias.index');
+Route::get('/admin/categorias/create', [CategoriaController::class, 'create'])->name('admin.categorias.create');
+Route::post('/admin/categorias/create', [CategoriaController::class, 'store'])->name('admin.categorias.store');
+Route::get('/admin/categorias/{id}', [CategoriaController::class, 'show'])->name('admin.categorias.show');
+Route::get('/admin/categorias/{id}/edit', [CategoriaController::class, 'edit'])->name('admin.categorias.edit');
+Route::put('/admin/categorias/{id}', [CategoriaController::class, 'update'])->name('admin.categorias.update');
+Route::delete('/admin/categorias/{id}', [CategoriaController::class, 'destroy'])->name('admin.categorias.destroy');
 
 Route::middleware([
     'auth:sanctum',

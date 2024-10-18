@@ -101,4 +101,12 @@
             </a>
         </p>
     @endif
+     {{-- Register link --}}
+     @if($register_url)
+     <p class="my-0">
+         <a href="{{ url('/crear-empresa') }}">
+             Crear una nueva empresa
+         </a>
+     </p>
+ @endif
 @stop
