@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,6 +14,8 @@ class CategoriaController extends Controller
      */
     public function index()
     {
+        // $empresa_id = Auth::user()->empresa_id;
+        // $usuarios = User::where('empresa_id',$empresa_id)->get();
         $categorias = Categoria::all();
         return view('admin.categorias.index', compact('categorias'));
     }

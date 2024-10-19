@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
@@ -50,6 +51,15 @@ Route::get('/admin/categorias/{id}', [CategoriaController::class, 'show'])->name
 Route::get('/admin/categorias/{id}/edit', [CategoriaController::class, 'edit'])->name('admin.categorias.edit');
 Route::put('/admin/categorias/{id}', [CategoriaController::class, 'update'])->name('admin.categorias.update');
 Route::delete('/admin/categorias/{id}', [CategoriaController::class, 'destroy'])->name('admin.categorias.destroy');
+
+//rutas para productos
+Route::get('/admin/productos', [ProductoController::class, 'index'])->name('admin.productos.index');
+Route::get('/admin/productos/create', [ProductoController::class, 'create'])->name('admin.productos.create');
+Route::post('/admin/productos/create', [ProductoController::class, 'store'])->name('admin.productos.store');
+Route::get('/admin/productos/{id}', [ProductoController::class, 'show'])->name('admin.productos.show');
+Route::get('/admin/productos/{id}/edit', [ProductoController::class, 'edit'])->name('admin.productos.edit');
+Route::put('/admin/productos/{id}', [ProductoController::class, 'update'])->name('admin.productos.update');
+Route::delete('/admin/productos/{id}', [ProductoController::class, 'destroy'])->name('admin.productos.destroy');
 
 Route::middleware([
     'auth:sanctum',

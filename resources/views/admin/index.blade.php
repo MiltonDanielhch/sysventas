@@ -41,6 +41,17 @@
             </div>
         </div>
     </div>
+    <div class="col-md-3 col-sm-6 col-12">
+        <div class="info-box">
+            <a href="{{ url('/admin/productos') }}" class="info-box-icon bg-warning">
+                <span class=""><i class="fas fa-list"></i></span>
+            </a>
+            <div class="info-box-content">
+                <span class="info-box-text">Productos registrados</span>
+                <span class="info-box-number">{{ $total_productos }} Productos</span>
+            </div>
+        </div>
+    </div>
 </div>
 @stop
 

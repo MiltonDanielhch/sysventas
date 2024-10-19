@@ -1,18 +1,18 @@
 @extends('adminlte::page')
 
 @section('content_header')
-<h1><b>Categorias/Listado de Categorias </b></h1>
+<h1><b>Producto/Listado de Productos </b></h1>
 <hr>
 @stop
 
 @section('content')
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="card card-outline card-primary">
             <div class="card-header">
-                <h3 class="card-title">Categorias Registradas</h3>
+                <h3 class="card-title">Productos Registrados</h3>
                 <div class="card-tools">
-                    <a href="/admin/categorias/create" class="btn btn-primary"><i class="fa fa-plus"></i> Crear Nuevo</a>
+                    <a href="/admin/productos/create" class="btn btn-primary"><i class="fa fa-plus"></i> Crear Nuevo</a>
                 </div>
             </div>
 
@@ -21,8 +21,14 @@
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Nombre de la Categoria</th>
-                            <th scope="col">Descripción</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Codigo</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">stock</th>
+                            <th scope="col">precio_compra</th>
+                            <th scope="col">precio_venta</th>
+                            <th scope="col">imagen</th>
                             <th scope="col" style="text-align: center">Acciones</th>
 
                         </tr>
@@ -31,29 +37,37 @@
                         @php
                             $contador = 1;
                         @endphp
-                        @foreach ($categorias as $categoria)
+                        @foreach ($productos as $producto)
                         <tr>
                             <td>{{ $contador++ }}</td>
-                            <td>{{ $categoria->nombre }}</td>
-                            <td>{{ $categoria->descripcion }}</td>
+                            <td>{{ $producto->categoria->nombre }}</td>
+                            <td style="vertical-align:middle">{{ $producto->codigo }}</td>
+                            <td>{{ $producto->nombre }}</td>
+                            <td>{{ $producto->descripcion }}</td>
+                            <td>{{ $producto->stock }}</td>
+                            <td>{{ $producto->precio_compra }}</td>
+                            <td>{{ $producto->precio_venta }}</td>
+                            <td>
+                                <img src="{{ url('storage/'.$producto->imagen) }}" width="10%" alt="imagen">
+                            </td>
                             <td style="text-align: center">
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <a href="{{ url('/admin/categorias',$categoria->id) }}" class="btn btn-info btn-sm"><i
+                                    <a href="{{ url('/admin/productos',$producto->id) }}" class="btn btn-info btn-sm"><i
                                         class="fas fa-eye"></i></a>
-                                <a href="{{ url('/admin/categorias/'.$categoria->id.'/edit') }}" class="btn btn-success btn-sm"><i
+                                <a href="{{ url('/admin/productos/'.$producto->id.'/edit') }}" class="btn btn-success btn-sm"><i
                                         class="fas fa-pencil"></i></a>
-                                <form action="{{ url('/admin/categorias',$categoria->id) }}" method="post"
-                                    onclick="preguntar{{ $categoria->id }}(event)" id="miFormulario{{ $categoria->id }}">
+                                <form action="{{ url('/admin/productos',$producto->id) }}" method="post"
+                                    onclick="preguntar{{ $producto->id }}(event)" id="miFormulario{{ $producto->id }}">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger btn-sm"><i
                                             class="fas fa-trash"></i></button>
                                 </form>
                                 <script>
-                                    function preguntar{{ $categoria->id }}(event){
+                                    function preguntar{{ $producto->id }}(event){
                                         event.preventDefault();
                                         Swal.fire({
-                                            title: "¿Desea Eliminar este registro? Si eliminas esta Categoria, todos los productos que pertenecen a esta categoriase eliminaran en la tabla producto",
+                                            title: "¿Desea Eliminar este registro?",
                                             text: "",
                                             icon: "question",
                                             showCancelButton: true,
@@ -63,7 +77,7 @@
                                             confirmButtonText: "Eliminar"
                                             }).then((result) => {
                                                 if (result.isConfirmed) {
-                                                    var form = $('#miFormulario{{ $categoria->id }}');
+                                                    var form = $('#miFormulario{{ $producto->id }}');
                                                     form.submit();
                                                     // title: "Deleted!",
                                                     // text: "Your file has been deleted.",
