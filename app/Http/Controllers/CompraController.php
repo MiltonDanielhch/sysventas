@@ -61,6 +61,7 @@ class CompraController extends Controller
         $compra->fecha = $request->fecha;
         $compra->comprobante = $request->comprobante;
         $compra->precio_total = $request->precio_total;
+        $compra->proveedor_id = $request->proveedor_id;
         $compra->empresa_id = Auth::user()->empresa_id;
         $compra->save();
 
@@ -71,10 +72,8 @@ class CompraController extends Controller
             $producto = Producto::where('id', $tmp_compra->producto_id)->first();
             $detalle_compra = new DetalleCompra();
             $detalle_compra->cantidad = $tmp_compra->cantidad;
-            $detalle_compra->precio_compra = $producto->precio_compra;
             $detalle_compra->compra_id = $compra->id;
             $detalle_compra->producto_id = $tmp_compra->producto_id;
-            $detalle_compra->proveedor_id = $request->proveedor_id;
             $detalle_compra->save();
 
             $producto->stock += $tmp_compra->cantidad;
@@ -111,16 +110,48 @@ class CompraController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Compra $compra)
+    public function update(Request $request, $id)
     {
-        //
+        // $datos = request()->all();
+        // return response()->json($datos);
+
+        $request->validate([
+            'fecha' => 'required',
+            'comprobante' => 'required',
+            'precio_total' => 'required',
+        ]);
+
+        $compra = Compra::find($id);
+        $compra->fecha = $request->fecha;
+        $compra->comprobante = $request->comprobante;
+        $compra->precio_total = $request->precio_total;
+        $compra->proveedor_id = $request->proveedor_id;
+        $compra->empresa_id = Auth::user()->empresa_id;
+        $compra->save();
+
+        return redirect()->route('admin.compras.index')
+            ->with('mensaje', 'se actualizo la compra de la manera correcta')
+            ->with('icono', 'success');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Compra $compra)
+    public function destroy($id)
     {
-        //
+        $compra = Compra::find($id);
+
+        foreach ($compra->detalles as $detalle){
+            $producto = Producto::find($detalle->producto_id);
+            $producto->stock -= $detalle->cantidad;
+            $producto->save();
+        }
+
+        $compra->detalles()->delete();
+        Compra::destroy($id);
+
+        return redirect()->route('admin.compras.index')
+        ->with('mensaje', 'se elimino la compra de la manera correcta')
+        ->with('icono', 'success');
     }
 }

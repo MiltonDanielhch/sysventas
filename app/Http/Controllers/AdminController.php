@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\Compra;
 use App\Models\Empresa;
 use App\Models\Producto;
 use App\Models\Proveedor;
@@ -19,6 +20,7 @@ class AdminController extends Controller
         $total_categorias = Categoria::count();
         $total_productos = Producto::count();
         $total_proveedores = Proveedor::count();
+        $total_compras = Compra::count();
 
         $empresa_id = Auth::check() ? Auth::user()->empresa_id : redirect()->route('login')->send();
         $empresa = Empresa::where('id', $empresa_id)->first();
@@ -29,6 +31,7 @@ class AdminController extends Controller
                     'total_categorias',
                     'total_productos',
                     'total_proveedores',
+                    'total_compras'
         ));
     }
 

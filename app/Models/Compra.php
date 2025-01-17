@@ -12,12 +12,12 @@ class Compra extends Model
     public function detalles(){
         return $this->hasMany(DetalleCompra::class);
     }
+    public function proveedor(){
+        return $this->belongsTo(Proveedor::class);
+    }
 
     public function producto(){
         return $this->belongsTo(Producto::class);
-    }
-    public function proveedor(){
-        return $this->belongsTo(Proveedor::class);
     }
     public function empresa(){
         return $this->belongsTo(Empresa::class);

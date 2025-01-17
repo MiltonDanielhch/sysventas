@@ -41,7 +41,7 @@
                                                 <td>{{ $detalle->producto->codigo }}</td>
                                                 <td>{{ $detalle->cantidad }}</td>
                                                 <td>{{ $detalle->producto->nombre }}</td>
-                                                <td>{{ $detalle->precio_compra }}</td>
+                                                <td>{{ $detalle->producto->precio_compra }}</td>
                                                 <td>{{ $costo = $detalle->cantidad * $detalle->producto->precio_compra }}</td>
                                             </tr>
                                             @php
@@ -63,7 +63,7 @@
 
                                 <div class="col-md-4">
                                     <label for="">Proveedor</label>
-                                    <input type="text" class="form-control" value="{{ $compra->detalles->first()->proveedor->empresa }}" id="id_proveedor" name="proveedor_id" disabled>
+                                    <input type="text" class="form-control" value="{{ $compra->proveedor->empresa }}" id="id_proveedor" name="proveedor_id" disabled>
 
 
                                     <div class="row">

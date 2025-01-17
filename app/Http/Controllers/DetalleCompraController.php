@@ -45,10 +45,8 @@ class DetalleCompraController extends Controller
             }else{
                 $detalle_compra = new DetalleCompra();
                 $detalle_compra->cantidad = $request->cantidad;
-                $detalle_compra->precio_compra = $request->precio_compra;
                 $detalle_compra->compra_id = $compra_id;
                 $detalle_compra->producto_id = $producto->id;
-                $detalle_compra->proveedor_id = $request->id_proveedor;
                 $detalle_compra->save();
             }
         }else{

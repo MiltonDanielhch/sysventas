@@ -155,9 +155,10 @@
                                 </div>
 
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" id="empresa_proveedor" value="{{ $compra->detalles->first()->proveedor->empresa }}" disabled>
-                                    <input type="text" class="form-control" id="id_proveedor" value="{{$compra->detalles->first()->proveedor->id}}" name="proveedor_id">
+                                    <input type="text" class="form-control" id="empresa_proveedor" value="{{ $compra->proveedor->empresa ?? 'No disponible' }}" disabled>
+                                    <input type="text" class="form-control" id="id_proveedor" value="{{ $compra->proveedor->id ?? '' }}" name="proveedor_id">
                                 </div>
+
                                 {{-- <hr> --}}
                             </div>
                         </div>
@@ -346,6 +347,7 @@
             var cantidad = $('#cantidad').val();
             var id_compra = $('#id_compra').val();
             var id_proveedor = $('#id_proveedor').val();
+            // alert(id_proveedor);
             if(codigo.length > 0){
                 $.ajax({
                     url: "{{ route('admin.detalle.compras.store') }}",
@@ -375,7 +377,6 @@
                         alert(error);
                     }
                 });
-
             }
         }
     });
