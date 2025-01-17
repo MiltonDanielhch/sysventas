@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Producto;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,9 +21,11 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        $administrador = Role::create(['name'=>'ADMINISTRADOR']);
+        // $administrador = Role::create(['name'=>'ADMINISTRADOR']);
 
-        $this->call([EmpresaSeeder::class]);
-        $this->call([UserSeeder::class]);
+        // // $this->call([EmpresaSeeder::class]);
+        // $this->call([UserSeeder::class]);
+
+        Producto::factory()->count(50)->create();
     }
 }

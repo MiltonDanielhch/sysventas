@@ -12,7 +12,7 @@
             <div class="card-header">
                 <h3 class="card-title">Productos Registrados</h3>
                 <div class="card-tools">
-                    <a href="/admin/productos/create" class="btn btn-primary"><i class="fa fa-plus"></i> Crear Nuevo</a>
+                    <a href="/admin/proveedores/create" class="btn btn-primary"><i class="fa fa-plus"></i> Crear Nuevo</a>
                 </div>
             </div>
 
@@ -21,14 +21,12 @@
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Categoria</th>
-                            <th scope="col">Codigo</th>
+                            <th scope="col">Empresa</th>
+                            <th scope="col">Dirección</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">Email</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Descripcion</th>
-                            <th scope="col">stock</th>
-                            <th scope="col">precio_compra</th>
-                            <th scope="col">precio_venta</th>
-                            <th scope="col">imagen</th>
+                            <th scope="col">Celular</th>
                             <th scope="col" style="text-align: center">Acciones</th>
 
                         </tr>
@@ -37,34 +35,33 @@
                         @php
                             $contador = 1;
                         @endphp
-                        @foreach ($productos as $producto)
+                        @foreach ($proveedores as $proveedor)
                         <tr>
                             <td>{{ $contador++ }}</td>
-                            <td>{{ $producto->categoria->nombre }}</td>
-                            <td style="vertical-align:middle">{{ $producto->codigo }}</td>
-                            <td>{{ $producto->nombre }}</td>
-                            <td>{{ $producto->descripcion }}</td>
-                            <td>{{ $producto->stock }}</td>
-                            <td>{{ $producto->precio_compra }}</td>
-                            <td>{{ $producto->precio_venta }}</td>
+                            <td>{{ $proveedor->empresa }}</td>
+                            <td>{{ $proveedor->direccion }}</td>
+                            <td>{{ $proveedor->telefono }}</td>
+                            <td>{{ $proveedor->email }}</td>
+                            <td>{{ $proveedor->nombre }}</td>
                             <td>
-                                <img src="{{ url('storage/'.$producto->imagen) }}" width="10%" alt="imagen">
+                                <a href="https://wa.me/{{ $empresa->codigo_postal."".$proveedor->celular }}" class="btn btn-success" target="_black" >  {{ $empresa->codigo_postal."".$proveedor->celular }}</a>
+
                             </td>
                             <td style="text-align: center">
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <a href="{{ url('/admin/productos',$producto->id) }}" class="btn btn-info btn-sm"><i
+                                    <a href="{{ url('/admin/proveedores',$proveedor->id) }}" class="btn btn-info btn-sm"><i
                                         class="fas fa-eye"></i></a>
-                                <a href="{{ url('/admin/productos/'.$producto->id.'/edit') }}" class="btn btn-success btn-sm"><i
+                                <a href="{{ url('/admin/proveedores/'.$proveedor->id.'/edit') }}" class="btn btn-success btn-sm"><i
                                         class="fas fa-pencil"></i></a>
-                                <form action="{{ url('/admin/productos',$producto->id) }}" method="post"
-                                    onclick="preguntar{{ $producto->id }}(event)" id="miFormulario{{ $producto->id }}">
+                                <form action="{{ url('/admin/proveedores',$proveedor->id) }}" method="post"
+                                    onclick="preguntar{{ $proveedor->id }}(event)" id="miFormulario{{ $proveedor->id }}">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger btn-sm"><i
                                             class="fas fa-trash"></i></button>
                                 </form>
                                 <script>
-                                    function preguntar{{ $producto->id }}(event){
+                                    function preguntar{{ $proveedor->id }}(event){
                                         event.preventDefault();
                                         Swal.fire({
                                             title: "¿Desea Eliminar este registro?",
@@ -77,7 +74,7 @@
                                             confirmButtonText: "Eliminar"
                                             }).then((result) => {
                                                 if (result.isConfirmed) {
-                                                    var form = $('#miFormulario{{ $producto->id }}');
+                                                    var form = $('#miFormulario{{ $proveedor->id }}');
                                                     form.submit();
                                                     // title: "Deleted!",
                                                     // text: "Your file has been deleted.",

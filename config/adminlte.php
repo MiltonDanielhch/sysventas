@@ -387,6 +387,32 @@ return [
             ],
         ],
         [
+            'text' => 'Proveedores',
+            'icon' => 'fas fa-fw fa-list',
+            'classes' => 'bg-success text-white',
+            'submenu' => [
+                [
+                    'text' => 'listado de proveedores',
+                    'url' => 'admin/proveedores',
+                    'classes' => 'bg-success text-black',
+
+                ],
+            ],
+        ],
+        [
+            'text' => 'Compras',
+            'icon' => 'fas fa-fw fa-shopping-cart',
+            'classes' => 'bg-success text-white',
+            'submenu' => [
+                [
+                    'text' => 'listado de Compras',
+                    'url' => 'admin/compras',
+                    'classes' => 'bg-success text-black',
+
+                ],
+            ],
+        ],
+        [
             'text' => 'multilevel',
             'icon' => 'fas fa-fw fa-share',
             'submenu' => [
@@ -488,7 +514,7 @@ return [
             ],
         ],
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',

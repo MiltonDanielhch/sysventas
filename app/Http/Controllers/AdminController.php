@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\Empresa;
 use App\Models\Producto;
+use App\Models\Proveedor;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,7 @@ class AdminController extends Controller
         $total_usuarios = User::count();
         $total_categorias = Categoria::count();
         $total_productos = Producto::count();
+        $total_proveedores = Proveedor::count();
 
         $empresa_id = Auth::check() ? Auth::user()->empresa_id : redirect()->route('login')->send();
         $empresa = Empresa::where('id', $empresa_id)->first();
@@ -26,6 +28,7 @@ class AdminController extends Controller
                      'total_usuarios',
                     'total_categorias',
                     'total_productos',
+                    'total_proveedores',
         ));
     }
 
