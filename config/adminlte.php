@@ -399,6 +399,7 @@ return [
                 ],
             ],
         ],
+
         [
             'text' => 'Compras',
             'icon' => 'fas fa-fw fa-shopping-cart',
@@ -412,41 +413,17 @@ return [
                 ],
             ],
         ],
+
         [
-            'text' => 'multilevel',
-            'icon' => 'fas fa-fw fa-share',
+            'text' => 'Clientes',
+            'icon' => 'fas fa-fw fa-users',
+            'classes' => 'bg-success text-white',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url' => '#',
-                ],
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                        ],
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
+                    'text' => 'listado de Clientes',
+                    'url' => 'admin/clientes',
+                    'classes' => 'bg-success text-black',
+
                 ],
             ],
         ],

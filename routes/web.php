@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\DetalleCompraController;
 use App\Http\Controllers\EmpresaController;
@@ -97,6 +98,14 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/admin/compras/detalle/{id}', [DetalleCompraController::class, 'destroy'])->name('admin.detalle.compras.destroy');
 
+    //rutas para clientes
+    Route::get('/admin/clientes', [ClienteController::class, 'index'])->name('admin.clientes.index');
+    Route::get('/admin/clientes/create', [ClienteController::class, 'create'])->name('admin.clientes.create');
+    Route::post('/admin/clientes/create', [ClienteController::class, 'store'])->name('admin.clientes.store');
+    Route::get('/admin/clientes/{id}', [ClienteController::class, 'show'])->name('admin.clientes.show');
+    Route::get('/admin/clientes/{id}/edit', [ClienteController::class, 'edit'])->name('admin.clientes.edit');
+    Route::put('/admin/clientes/{id}', [ClienteController::class, 'update'])->name('admin.clientes.update');
+    Route::delete('/admin/clientes/{id}', [ClienteController::class, 'destroy'])->name('admin.clientes.destroy');
 
 });
 

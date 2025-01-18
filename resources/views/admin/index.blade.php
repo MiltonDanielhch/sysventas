@@ -74,6 +74,17 @@
             </div>
         </div>
     </div>
+    <div class="col-md-3 col-sm-6 col-12">
+        <div class="info-box">
+            <a href="{{ url('/admin/clientes') }}" class="info-box-icon bg-info">
+                <span class=""><i class="fas fa-users"></i></span>
+            </a>
+            <div class="info-box-content">
+                <span class="info-box-text">Clientes registrados</span>
+                <span class="info-box-number">{{ $total_clientes }} Clientes</span>
+            </div>
+        </div>
+    </div>
 </div>
 @stop
 
