@@ -5,12 +5,15 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\DetalleCompraController;
+use App\Http\Controllers\DetalleVentaController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TmpCompraController;
+use App\Http\Controllers\TmpVentaController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\VentaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -98,6 +101,7 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/admin/compras/detalle/{id}', [DetalleCompraController::class, 'destroy'])->name('admin.detalle.compras.destroy');
 
+
     //rutas para clientes
     Route::get('/admin/clientes', [ClienteController::class, 'index'])->name('admin.clientes.index');
     Route::get('/admin/clientes/create', [ClienteController::class, 'create'])->name('admin.clientes.create');
@@ -107,6 +111,26 @@ Route::middleware('auth')->group(function () {
     Route::put('/admin/clientes/{id}', [ClienteController::class, 'update'])->name('admin.clientes.update');
     Route::delete('/admin/clientes/{id}', [ClienteController::class, 'destroy'])->name('admin.clientes.destroy');
 
+    //rutas para ventas
+    Route::get('/admin/ventas', [VentaController::class, 'index'])->name('admin.ventas.index');
+    Route::get('/admin/ventas/create', [VentaController::class, 'create'])->name('admin.ventas.create');
+    Route::post('/admin/ventas/create', [VentaController::class, 'store'])->name('admin.ventas.store');
+    Route::get('/admin/ventas/pdf/{id}', [VentaController::class, 'pdf'])->name('admin.ventas.pdf');
+    Route::get('/admin/ventas/{id}', [VentaController::class, 'show'])->name('admin.ventas.show');
+    Route::get('/admin/ventas/{id}/edit', [VentaController::class, 'edit'])->name('admin.ventas.edit');
+    Route::put('/admin/ventas/{id}', [VentaController::class, 'update'])->name('admin.ventas.update');
+    Route::delete('/admin/ventas/{id}', [VentaController::class, 'destroy'])->name('admin.ventas.destroy');
+    Route::post('/admin/ventas/clientes/create', [VentaController::class, 'cliente_store'])->name('admin.ventas.cliente.store');
+
+    //rutas para tmp ventas
+    Route::post('/admin/ventas/create/tmp', [TmpVentaController::class, 'tmp_ventas'])->name('admin.ventas.tmp_ventas');
+    Route::delete('/admin/ventas/create/tmp/{id}', [TmpVentaController::class, 'destroy'])->name('admin.ventas.tmp_ventas.destroy');
+
+    // Rutas para detalle de las ventas
+    // Route::post('/admin/compras/detalle/create', [DetalleCompraController::class, 'store'])->name('admin.detalle.compras.store');
+    Route::post('/admin/ventas/detalle/create', [DetalleVentaController::class, 'store'])->name('admin.detalle.ventas.store');
+
+    Route::delete('/admin/ventas/detalle/{id}', [DetalleVentaController::class, 'destroy'])->name('admin.detalle.ventas.destroy');
 });
 
 

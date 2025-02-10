@@ -427,6 +427,19 @@ return [
                 ],
             ],
         ],
+        [
+            'text' => 'Ventas',
+            'icon' => 'fas fa-fw fa-cash-register',
+            'classes' => 'bg-success text-white',
+            'submenu' => [
+                [
+                    'text' => 'listado de Ventas',
+                    'url' => 'admin/ventas',
+                    'classes' => 'bg-success text-black',
+
+                ],
+            ],
+        ],
         // ['header' => 'labels'],
         // [
         //     'text' => 'important',

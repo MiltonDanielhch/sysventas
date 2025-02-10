@@ -18,4 +18,8 @@ class Producto extends Model
     public function empresa(){
         return $this->belongsTo(Empresa::class);
     }
+    public function detallesVenta()
+    {
+        return $this->hasMany(DetalleVenta::class);
+    }
 }

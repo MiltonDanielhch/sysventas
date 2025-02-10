@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClienteController extends Controller
 {
@@ -41,6 +42,7 @@ class ClienteController extends Controller
         $cliente->nit_codigo = $request->nit_cliente;
         $cliente->telefono = $request->telefono;
         $cliente->email = $request->email;
+        $cliente->empresa_id = Auth::user()->empresa_id;
         $cliente->save();
 
         return redirect()->route('admin.clientes.index')
@@ -83,6 +85,7 @@ class ClienteController extends Controller
         $cliente->nit_codigo = $request->nit_cliente;
         $cliente->telefono = $request->telefono;
         $cliente->email = $request->email;
+        $cliente->empresa_id = Auth::user()->empresa_id;
         $cliente->save();
 
         return redirect()->route('admin.clientes.index')
